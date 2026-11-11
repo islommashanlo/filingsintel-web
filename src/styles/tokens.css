@@ -1,0 +1,56 @@
+/* Design tokens from the FilingsIntel prototype. Color is semantic only:
+   up = purchases/increases, dn = sales/decreases, am = caution, acc = interactive. */
+:root {
+  --font-ui: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  --bg: #f6f7f9;
+  --surf: #ffffff;
+  --elev: #eff1f5;
+  --surfT: rgba(246, 247, 249, 0.86);
+  --ink: #151820;
+  --ink2: rgba(21, 24, 32, 0.66);
+  --ink3: rgba(21, 24, 32, 0.56);
+  --line: rgba(21, 24, 32, 0.09);
+  --lineSoft: rgba(21, 24, 32, 0.045);
+  --acc: #4763cf;
+  --accSoft: rgba(71, 99, 207, 0.1);
+  --accInk: #3b51b5;
+  --up: #0e7e56;
+  --upBg: rgba(14, 150, 96, 0.1);
+  --dn: #c13939;
+  --dnBg: rgba(205, 60, 60, 0.09);
+  --am: #8a5d08;
+  --amBg: rgba(196, 140, 20, 0.13);
+  --shadow: 0 1px 2px rgba(21, 24, 32, 0.04);
+  --scrim: rgba(21, 24, 32, 0.4);
+
+  --r-chip: 5px;
+  --r-ctl: 9px;
+  --r-card: 12px;
+  --r-modal: 16px;
+  --r-pill: 99px;
+}
+
+:root[data-theme="dark"] {
+  --bg: #0e1015;
+  --surf: #151821;
+  --elev: #1e222e;
+  --surfT: rgba(14, 16, 21, 0.84);
+  --ink: #edeff4;
+  --ink2: rgba(237, 239, 244, 0.66);
+  --ink3: rgba(237, 239, 244, 0.54);
+  --line: rgba(237, 239, 244, 0.09);
+  --lineSoft: rgba(237, 239, 244, 0.05);
+  --acc: #7b8cef;
+  --accSoft: rgba(123, 140, 239, 0.14);
+  --accInk: #98a6f6;
+  --up: #3dbe8b;
+  --upBg: rgba(61, 190, 139, 0.13);
+  --dn: #e5686d;
+  --dnBg: rgba(229, 104, 109, 0.12);
+  --am: #d9a83f;
+  --amBg: rgba(217, 168, 63, 0.14);
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+  --scrim: rgba(0, 0, 0, 0.55);
+}
