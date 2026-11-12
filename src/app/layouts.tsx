@@ -183,55 +183,62 @@ export function AppLayout() {
 
 export function MarketingLayout() {
   const me = useMe().data;
+  const nav = ({ isActive }: { isActive: boolean }) => `navlink ${isActive ? "active" : ""}`;
   return (
     <div className="shell mkt">
-      <header className="hdr">
-        <div className="hdr-in" style={{ maxWidth: 1200 }}>
-          <Link to="/" className="brand">
-            <Logo />
-            FilingsIntel
-          </Link>
-          <nav className="nav" aria-label="Site" style={{ marginLeft: 12 }}>
-            <NavLink to="/" end className={({ isActive }) => (isActive ? "active" : "")}>Product</NavLink>
-            <NavLink to="/pricing" className={({ isActive }) => (isActive ? "active" : "")}>Pricing</NavLink>
-            <NavLink to="/methodology" className={({ isActive }) => (isActive ? "active" : "")}>Methodology</NavLink>
-          </nav>
-          <div className="row" style={{ marginLeft: "auto" }}>
-            <ThemeToggle />
-            {me ? (
-              <Link to="/dashboard" className="btn primary">Open dashboard →</Link>
-            ) : (
-              <>
-                <Link to="/login" className="btn hide-sm">Sign in</Link>
-                <Link to="/signup" className="btn primary">Get started</Link>
-              </>
-            )}
+      <a href="#main" className="sr-only">Skip to content</a>
+      <header className="mhead">
+        <div className="util">
+          <div className="mwrap util-in">
+            <span>Form 4 and 13F filings, organized as they are reported.</span>
+            <span className="hide-sm">Source: SEC EDGAR</span>
+          </div>
+        </div>
+        <div className="masthead">
+          <div className="mwrap mast-in">
+            <Link to="/" className="wordmark">FilingsIntel</Link>
+            <nav className="mast-nav" aria-label="Main">
+              <NavLink to="/" end className={nav}>Product</NavLink>
+              <NavLink to="/pricing" className={nav}>Pricing</NavLink>
+              <NavLink to="/methodology" className={nav}>Methodology</NavLink>
+            </nav>
+            <div className="mast-act">
+              <ThemeToggle />
+              {me ? (
+                <Link to="/dashboard" className="btn primary">Open dashboard</Link>
+              ) : (
+                <>
+                  <Link to="/login" className="navlink strong hide-sm">Sign in</Link>
+                  <Link to="/signup" className="btn primary">Get started</Link>
+                </>
+              )}
+            </div>
           </div>
         </div>
       </header>
       <main style={{ flex: 1 }} id="main">
         <Outlet />
       </main>
-      <footer className="foot">
-        <div className="mkt-in" style={{ padding: 0 }}>
-          <div className="cols" style={{ gridTemplateColumns: "1.4fr 1fr 1fr", padding: "14px 0 20px" }}>
+      <footer className="mfoot">
+        <div className="mwrap" style={{ paddingBlock: "40px 28px" }}>
+          <div className="cols" style={{ gridTemplateColumns: "1.4fr 1fr 1fr", gap: 28 }}>
             <div>
-              <div className="brand"><Logo />FilingsIntel</div>
-              <div style={{ marginTop: 8, fontSize: 12.5 }}>Insider and institutional filings, organized.</div>
+              <div className="wordmark" style={{ fontSize: 20 }}>FilingsIntel</div>
+              <div className="muted" style={{ fontSize: 13, marginTop: 8, maxWidth: 260 }}>Insider and institutional filings, organized.</div>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 12.5 }}>
-              <span className="eyebrow">Product</span>
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to="/pricing">Pricing</Link>
-              <Link to="/methodology">Methodology</Link>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div className="serif" style={{ fontSize: 14, marginBottom: 2 }}>Product</div>
+              <Link to="/dashboard" className="footlink">Dashboard</Link>
+              <Link to="/pricing" className="footlink">Pricing</Link>
+              <Link to="/methodology" className="footlink">Methodology</Link>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 6, fontSize: 12.5 }}>
-              <span className="eyebrow">Legal</span>
-              <Link to="/terms">Terms of Service</Link>
-              <Link to="/privacy">Privacy Policy</Link>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+              <div className="serif" style={{ fontSize: 14, marginBottom: 2 }}>Legal</div>
+              <Link to="/terms" className="footlink">Terms of Service</Link>
+              <Link to="/privacy" className="footlink">Privacy Policy</Link>
             </div>
           </div>
-          <div className="row wrap" style={{ justifyContent: "space-between", borderTop: "1px solid var(--line)", paddingTop: 12 }}>
+          <div className="row wrap faint" style={{ justifyContent: "space-between", marginTop: 36, paddingTop: 18, borderTop: "1px solid var(--line)", fontSize: 12 }}>
             <span>{DISCLAIMER}</span>
             <span>© 2026 FilingsIntel</span>
           </div>

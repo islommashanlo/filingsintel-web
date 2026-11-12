@@ -16,12 +16,7 @@ function Preview() {
     { t: "LUMA", co: "Lumen Devices Ltd", badge: "Insider Sale", tone: "dn", who: "Tom Okafor", role: "Director", m: [["Reported value", "$3.5M"], ["Shares", "70,000"], ["Price", "$50.02"], ["Owned after", "412,000"]] },
   ];
   return (
-    <div className="browser" aria-label="Product preview with sample data" role="img">
-      <div className="browser-bar">
-        <span><i /><i /><i /></span>
-        <span className="mono faint" style={{ flex: 1, maxWidth: 340, margin: "0 auto", height: 22, borderRadius: 6, background: "var(--surf)", border: "1px solid var(--line)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 11 }}>app.filingsintel.com</span>
-        <span className="hide-sm" style={{ fontSize: 11, fontWeight: 600, color: "var(--acc)" }}>Sample data</span>
-      </div>
+    <div aria-label="Product preview with sample data" role="img">
       <div style={{ padding: 18, textAlign: "left", fontSize: 13.5 }}>
         <div className="dashgrid">
           <div className="card" style={{ gridArea: "feed" }}>
@@ -59,64 +54,119 @@ function Preview() {
   );
 }
 
+const LEDGER = [
+  { form: "Form 4", who: "Tom Okafor", sub: "Director, Lumen Devices Ltd", what: "Sale", tag: null, val: "\u2212$3.5M", tone: "dn", filed: "Nov 10" },
+  { form: "Form 4", who: "Acme Robotics insiders", sub: "4 insiders in 14 days", what: "Purchase", tag: "Cluster", val: "+$3.9M", tone: "up", filed: "Nov 9" },
+  { form: "13F-HR", who: "Northgate Partners LP", sub: "Quarter ended Sep 30", what: "Position increased", tag: null, val: "+$13.8M", tone: "up", filed: "Nov 10" },
+  { form: "13F-HR", who: "Harborview Capital Management", sub: "Quarter ended Sep 30", what: "New position", tag: null, val: "+$648M", tone: "up", filed: "Nov 11" },
+];
+
+function Dots({ label, value, tone }: { label: string; value: string; tone?: string }) {
+  return (
+    <div className="dots">
+      <span>{label}</span>
+      <i />
+      <b className={tone}>{value}</b>
+    </div>
+  );
+}
+
 export function Landing() {
   return (
     <div>
-      <section className="mkt-in" style={{ padding: "76px 24px 44px", textAlign: "center" }}>
-        <div className="row" style={{ display: "inline-flex", gap: 8, padding: "4px 12px 4px 5px", border: "1px solid var(--line)", borderRadius: 99, background: "var(--surf)", fontSize: 12, color: "var(--ink2)", marginBottom: 22 }}>
-          <span className="badge acc pill">Form 4 · 13F</span>Insider and institutional filings in one place
-        </div>
-        <h1 className="hero">Track what was reported. Understand what changed.</h1>
-        <p className="lede" style={{ margin: "20px auto 0" }}>Follow insider transactions and institutional holdings from the investors you care about. One feed, clear context, and alerts when a new SEC filing arrives.</p>
-        <div className="row wrap" style={{ justifyContent: "center", marginTop: 30 }}>
-          <Link to="/signup" className="btn primary lg">Get started free</Link>
-          <Link to="/pricing" className="btn lg">See pricing</Link>
-        </div>
-        <p className="faint" style={{ fontSize: 12, marginTop: 12 }}>Free plan · No card required</p>
-      </section>
-      <div style={{ maxWidth: 1240, margin: "0 auto", padding: "0 20px" }}><Preview /></div>
-
-      <section className="mkt-in" style={{ padding: "90px 24px 20px" }}>
-        <div className="eyebrow">What you get</div>
-        <h2 className="h2" style={{ maxWidth: 620, margin: "8px 0 28px" }}>Understand public filings without reading them line by line.</h2>
-        <div className="cols" style={{ gridTemplateColumns: "repeat(3, minmax(0,1fr))" }}>
-          {[
-            ["Follow investors, not headlines", "Follow 13F institutions and corporate insiders. Every new position, exit, purchase and sale lands in one chronological feed."],
-            ["Activity with context", "Cluster activity shows when several insiders of one company report trades within 14 days. Amendments and flagged prices stay visible."],
-            ["Alerts on new filings", "Turn on email for any fund, company or insider you follow, as a daily digest or instantly on Pro."],
-          ].map(([t, d]) => (
-            <div className="card card-pad" key={t} style={{ padding: 22 }}>
-              <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: "-0.015em" }}>{t}</div>
-              <p className="muted" style={{ marginTop: 6 }}>{d}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="mkt-in" style={{ padding: "70px 24px" }}>
-        <div className="cols" style={{ gridTemplateColumns: "minmax(0,1fr) minmax(0,1.2fr)", alignItems: "center" }}>
-          <div>
-            <div className="eyebrow">Data you can check</div>
-            <h2 className="h2" style={{ margin: "8px 0 14px" }}>Straight from SEC EDGAR. Every number links back to its filing.</h2>
-            <Link to="/methodology" style={{ fontWeight: 600 }}>Read the methodology →</Link>
+      <section className="mwrap mhero">
+        <div>
+          <h1 className="hero-h">Track what was reported. Understand what changed.</h1>
+          <p className="lede">Follow insider transactions and institutional holdings from the investors you care about. One chronological feed, clear context, and an alert when a new SEC filing arrives.</p>
+          <div className="btns">
+            <Link to="/signup" className="btn primary lg">Get started free</Link>
+            <Link to="/pricing" className="btn lg">See pricing</Link>
           </div>
-          <div className="card clip">
+          <div className="fine">Free plan. No card required.</div>
+        </div>
+        <div>
+          <div className="ledger-wrap">
+            <table className="ledger">
+              <caption>Recent filings, sample data</caption>
+              <thead>
+                <tr><th scope="col">Form</th><th scope="col">Filer</th><th scope="col">Reported</th><th scope="col" className="r">Value</th><th scope="col">Filed</th></tr>
+              </thead>
+              <tbody>
+                {LEDGER.map((r) => (
+                  <tr key={r.who}>
+                    <td className="mono">{r.form}</td>
+                    <td><div className="who">{r.who}</div><div className="acc">{r.sub}</div></td>
+                    <td>{r.what}{r.tag && <span className="tag">{r.tag}</span>}</td>
+                    <td className={`r mono ${r.tone}`}>{r.val}</td>
+                    <td className="mono">{r.filed}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+          <p className="note">In the product, every figure links to its accession number and SEC filing, with the filing date and data age. Names and amounts shown here are fictional samples.</p>
+        </div>
+      </section>
+
+      <section className="mwrap">
+        <div className="frame">
+          <div className="frame-bar"><span className="mono">app.filingsintel.com</span><span className="hide-sm">Sample data</span></div>
+          <div className="app-look"><Preview /></div>
+        </div>
+        <div className="figcap"><b>Figure 1.</b> The FilingsIntel dashboard with sample data.</div>
+      </section>
+
+      <section className="mwrap msec">
+        <h2 className="sec-h">Understand public filings without reading them line by line.</h2>
+        <div className="cols3">
+          <article className="mcol">
+            <h3>Follow investors, not headlines</h3>
+            <p>Follow 13F institutions and corporate insiders. Every new position, exit, purchase and sale lands in one chronological feed.</p>
+            <Dots label="Harborview Capital, new position" value="+$648M" tone="up" />
+            <Dots label="Tom Okafor, sale" value={"\u2212$3.5M"} tone="dn" />
+          </article>
+          <article className="mcol">
+            <h3>Activity with context</h3>
+            <p>Cluster activity shows when several insiders of one company report trades within 14 days. Amendments and flagged prices stay visible.</p>
+            <Dots label="ACME, 4 insiders in 14 days" value="$3.9M" tone="up" />
+            <Dots label="HLTH, 3 insiders in 14 days" value="$8.9M" tone="up" />
+          </article>
+          <article className="mcol">
+            <h3>Alerts on new filings</h3>
+            <p>Turn on email for any fund, company or insider you follow, as a daily digest or instantly on Pro.</p>
+            <Dots label="New filing from Acme Robotics" value="On" />
+            <Dots label="New 13F from Harborview Capital" value="On" />
+          </article>
+        </div>
+      </section>
+
+      <section className="mwrap msec">
+        <div className="msplit">
+          <div>
+            <h2 className="sec-h sm">Straight from SEC EDGAR. Every number links back to its filing.</h2>
+            <Link to="/methodology" className="textlink">Read the methodology</Link>
+          </div>
+          <div className="srcs">
             {SOURCES.map((s) => (
-              <div className="list-row" key={s.k} style={{ padding: "14px 18px", alignItems: "flex-start" }}>
-                <span className="formchip" style={{ marginTop: 2 }}>{s.k}</span>
-                <div><div style={{ fontWeight: 600 }}>{s.t}</div><div className="muted" style={{ fontSize: 13 }}>{s.d}</div></div>
+              <div className="src" key={s.k}>
+                <div className="mono k">{s.k}</div>
+                <div><div className="t">{s.t}</div><div className="d">{s.d}</div></div>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="mkt-in" style={{ padding: "20px 24px 90px", textAlign: "center" }}>
-        <h2 className="h2" style={{ maxWidth: 640, margin: "0 auto" }}>Start free. Upgrade when you need deeper research tools.</h2>
-        <p className="muted" style={{ margin: "10px 0 22px" }}>Free covers a 15-item watchlist and 3 alert rules. Pro is $19.99/month.</p>
-        <div className="row wrap" style={{ justifyContent: "center" }}>
-          <Link to="/signup" className="btn primary lg">Create free account</Link>
-          <Link to="/pricing" className="btn lg">Compare plans</Link>
+      <section className="band">
+        <div className="mwrap band-in">
+          <div style={{ flex: 1, minWidth: 260 }}>
+            <h2 className="band-h">Start free. Upgrade when you need deeper research tools.</h2>
+            <p style={{ fontSize: 14.5, margin: "8px 0 0", opacity: 0.9 }}>Free covers a 15-item watchlist and 3 alert rules. Pro is $19.99/month.</p>
+          </div>
+          <div className="btns" style={{ margin: 0 }}>
+            <Link to="/signup" className="btn lg inv">Create free account</Link>
+            <Link to="/pricing" className="btn lg inv-o">Compare plans</Link>
+          </div>
         </div>
       </section>
     </div>
@@ -157,7 +207,7 @@ export function Pricing() {
           {FREE_FEATURES.map((f) => <div className="feat" key={f} style={{ fontSize: 13.5 }}>{f}</div>)}
           <Link to="/signup" className="btn lg block" style={{ marginTop: 18 }}>Get started</Link>
         </div>
-        <div className="card price-card" style={{ borderColor: "var(--acc)" }}>
+        <div className="card price-card" style={{ border: "2px solid var(--acc)" }}>
           <div className="row" style={{ fontWeight: 700 }}>Pro <span className="badge acc pill">MOST POPULAR</span></div>
           <div className="price">$19.99</div>
           <div className="faint" style={{ marginBottom: 14 }}>per month · cancel anytime</div>

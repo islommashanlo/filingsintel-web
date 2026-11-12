@@ -1,6 +1,7 @@
 /* Design tokens from the FilingsIntel prototype. Color is semantic only:
    up = purchases/increases, dn = sales/decreases, am = caution, acc = interactive. */
-:root {
+:root,
+.app-look {
   --font-ui: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
 
@@ -32,7 +33,8 @@
   --r-pill: 99px;
 }
 
-:root[data-theme="dark"] {
+:root[data-theme="dark"],
+:root[data-theme="dark"] .app-look {
   --bg: #0e1015;
   --surf: #151821;
   --elev: #1e222e;
@@ -53,4 +55,53 @@
   --amBg: rgba(217, 168, 63, 0.14);
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
   --scrim: rgba(0, 0, 0, 0.55);
+}
+
+/* "Classic" look for marketing and auth pages: serif headings, navy on white,
+   square corners and ruled tables. The app itself keeps the tokens above. */
+.mkt {
+  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --bg: #ffffff;
+  --surf: #ffffff;
+  --elev: #f3f4f7;
+  --surfT: #ffffff;
+  --ink: #121c2e;
+  --ink2: rgba(18, 28, 46, 0.74);
+  --ink3: rgba(18, 28, 46, 0.62);
+  --line: rgba(18, 28, 46, 0.18);
+  --lineSoft: rgba(18, 28, 46, 0.09);
+  --acc: #1b3a6b;
+  --accSoft: rgba(27, 58, 107, 0.08);
+  --accInk: #112848;
+  --onAcc: #ffffff;
+  --up: #0b6b49;
+  --dn: #b3322f;
+  --am: #85590a;
+  --shadow: none;
+  --scrim: rgba(18, 28, 46, 0.4);
+  --r-card: 2px;
+  --r-ctl: 2px;
+}
+:root[data-theme="dark"] .mkt {
+  --bg: #0c121c;
+  --surf: #121a27;
+  --elev: #1a2434;
+  --surfT: #0c121c;
+  --ink: #e8ecf3;
+  --ink2: rgba(232, 236, 243, 0.74);
+  --ink3: rgba(232, 236, 243, 0.6);
+  --line: rgba(232, 236, 243, 0.2);
+  --lineSoft: rgba(232, 236, 243, 0.09);
+  --acc: #9db4e6;
+  --accSoft: rgba(157, 180, 230, 0.14);
+  --accInk: #bbcbef;
+  --onAcc: #0c121c;
+  --up: #3dbe8b;
+  --dn: #e5686d;
+  --am: #d9a83f;
+  --scrim: rgba(0, 0, 0, 0.55);
+}
+.app-look {
+  --r-card: 12px;
+  --r-ctl: 9px;
 }

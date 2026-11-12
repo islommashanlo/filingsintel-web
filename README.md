@@ -90,7 +90,7 @@ Filters and sort are kept in the URL, sorting and pagination are server-side wit
 
 ## Theming
 
-Tokens live in `src/styles/tokens.css` for light and `[data-theme="dark"]`. `index.html` sets `data-theme` before first paint from `localStorage` (`fi-theme`) or the system setting; signed-in accounts sync the choice through `/me/preferences`. Color is semantic: green for purchases and increases, red for sales and decreases, amber for caution, accent for interactive elements, always with a label or sign.
+Tokens live in `src/styles/tokens.css` for light and `[data-theme="dark"]`. Marketing and auth pages use the "Classic" look (Source Serif 4 headings, navy on white, square corners, ruled tables) by overriding the same tokens under `.mkt`; `.app-look` restores the app palette for the embedded product preview. `index.html` sets `data-theme` before first paint from `localStorage` (`fi-theme`) or the system setting; signed-in accounts sync the choice through `/me/preferences`. Color is semantic: green for purchases and increases, red for sales and decreases, amber for caution, accent for interactive elements, always with a label or sign.
 
 ## Product rules
 
