@@ -23,7 +23,7 @@ export function ClusterCard({ cluster: c }: { cluster: Cluster }) {
           </span>
           <span className={`badge pill ${purchase ? "up" : "dn"}`}>{purchase ? "Purchases" : "Sales"}</span>
         </div>
-        <div style={{ fontSize: 16, fontWeight: 700, letterSpacing: "-0.015em", lineHeight: 1.3, textWrap: "pretty" }}>
+        <div className="disp" style={{ fontSize: 20, lineHeight: 1.2, textWrap: "pretty" }}>
           {c.insider_count} insiders reported open-market {noun} within {c.window_days} days
         </div>
       </div>

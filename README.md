@@ -1,8 +1,8 @@
-# FilingsIntel Web
+# InsideLedger Web
 
-React frontend for **FilingsIntel**, a public-filings intelligence platform: follow corporate insiders (Form 4) and institutional managers (13F), see what they reported, and get alerts on new filings.
+React frontend for **InsideLedger** (formerly FilingsIntel; the repository and backend keep the old name), a public-filings intelligence platform: follow corporate insiders (Form 4) and institutional managers (13F), see what they reported, and get alerts on new filings.
 
-It talks to the Rails JSON API in [`fintrack-core-backend`](https://github.com/islommashanlo/fintrack-core-backend) (`docs/api-v1.md`, `docs/openapi.yml`). The layout, tokens and copy follow the FilingsIntel design prototype.
+It talks to the Rails JSON API in [`fintrack-core-backend`](https://github.com/islommashanlo/fintrack-core-backend) (`docs/api-v1.md`, `docs/openapi.yml`). The layout, tokens and copy follow the InsideLedger design prototype and its design system.
 
 > Data from public SEC filings. Not investment advice.
 
@@ -88,9 +88,15 @@ Filters and sort are kept in the URL, sorting and pagination are server-side wit
 - **Billing:** upgrade redirects to Stripe-hosted checkout with a persisted request UUID; access follows the verified subscription, never the redirect.
 - **Decimals** arrive as strings and are only converted for display. A missing or unusable value renders as `—`, never as zero.
 
-## Theming
+## Design system
 
-Tokens live in `src/styles/tokens.css` for light and `[data-theme="dark"]`. Marketing and auth pages use the "Classic" look (Source Serif 4 headings, navy on white, square corners, ruled tables) by overriding the same tokens under `.mkt`; `.app-look` restores the app palette for the embedded product preview. `index.html` sets `data-theme` before first paint from `localStorage` (`fi-theme`) or the system setting; signed-in accounts sync the choice through `/me/preferences`. Color is semantic: green for purchases and increases, red for sales and decreases, amber for caution, accent for interactive elements, always with a label or sign.
+The app follows the InsideLedger Design System ("Classical"). Tokens live in `src/styles/tokens.css`:
+
+- **Palette:** Marble (light) and Basalt (dark, `[data-theme="dark"]`). `--acc` is interactive, `--up`/`--dn`/`--am` carry meaning (increase, decrease, caution) and always come with a label or sign, `--orn` is ornament only.
+- **Type:** Cormorant Garamond for display headings, Cinzel for inscription labels (uppercase, letter-spaced), Libre Caslon Text for body, IBM Plex Mono with tabular figures for numbers, tickers and dates.
+- **Shape:** square corners (2px on controls), no shadows, rules instead of boxes; tables and lists sit under a heavy top rule, headers use a double rule.
+
+`index.html` sets `data-theme` before first paint from `localStorage` (`fi-theme`) or the system setting; signed-in accounts sync the choice through `/me/preferences`. Marketing and auth pages share the same tokens and add the architectural layer (temple title page, framed plates, colonnade, Greek-key frieze) under `.mkt`.
 
 ## Product rules
 

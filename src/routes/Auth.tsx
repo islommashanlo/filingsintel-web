@@ -30,13 +30,15 @@ export function Login() {
     <form className="auth-card" onSubmit={(e) => { e.preventDefault(); login.mutate({ email, password }, { onSuccess: () => navigate(safeNext(sp.get("next")), { replace: true }) }); }}>
       <div>
         <h1 className="auth-title">Welcome back</h1>
-        <p className="muted">Sign in to your FilingsIntel account</p>
+        <p className="muted" style={{ textAlign: "center" }}>Sign in to your InsideLedger account</p>
       </div>
+      <div className="auth-panel">
       <Field label="Email" type="email" autoComplete="email" required placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
       <Field label={<><span>Password</span><Link to="/forgot-password">Forgot password?</Link></>} type="password" autoComplete="current-password" required minLength={8} value={password} onChange={(e) => setPassword(e.target.value)} />
       {login.error && <div className="err" role="alert">{authError(login.error)}</div>}
       <button type="submit" className="btn primary lg block" disabled={login.isPending}>{login.isPending ? "Signing in…" : "Sign in"}</button>
-      <p className="muted" style={{ textAlign: "center", fontSize: 13 }}>New to FilingsIntel? <Link to="/signup">Create an account</Link></p>
+      </div>
+      <p className="muted" style={{ textAlign: "center", fontSize: 13 }}>New to InsideLedger? <Link to="/signup">Create an account</Link></p>
     </form>
   );
 }
@@ -52,8 +54,9 @@ export function Signup() {
     <form className="auth-card" onSubmit={(e) => { e.preventDefault(); signup.mutate({ email, password }, { onSuccess: () => navigate("/onboarding", { replace: true }) }); }}>
       <div>
         <h1 className="auth-title">Create your account</h1>
-        <p className="muted">Free forever. No card required.</p>
+        <p className="muted" style={{ textAlign: "center" }}>Free forever. No card required.</p>
       </div>
+      <div className="auth-panel">
       <Field label="Email" type="email" autoComplete="email" required placeholder="you@example.com" value={email} onChange={(e) => setEmail(e.target.value)} />
       <div>
         <Field label="Password" type="password" autoComplete="new-password" required minLength={8} placeholder="At least 8 characters" value={password} onChange={(e) => setPassword(e.target.value)} />
@@ -63,10 +66,11 @@ export function Signup() {
       </div>
       <label className="row muted" style={{ alignItems: "flex-start", fontSize: 12.5 }}>
         <input type="checkbox" required checked={agree} onChange={(e) => setAgree(e.target.checked)} style={{ marginTop: 3 }} />
-        <span>I agree to the <Link to="/terms" target="_blank">Terms</Link> and <Link to="/privacy" target="_blank">Privacy Policy</Link>, and understand FilingsIntel is not investment advice.</span>
+        <span>I agree to the <Link to="/terms" target="_blank">Terms</Link> and <Link to="/privacy" target="_blank">Privacy Policy</Link>, and understand InsideLedger is not investment advice.</span>
       </label>
       {signup.error && <div className="err" role="alert">{authError(signup.error)}</div>}
       <button type="submit" className="btn primary lg block" disabled={signup.isPending}>{signup.isPending ? "Creating account…" : "Continue"}</button>
+      </div>
       <p className="muted" style={{ textAlign: "center", fontSize: 13 }}>Already have an account? <Link to="/login">Sign in</Link></p>
     </form>
   );

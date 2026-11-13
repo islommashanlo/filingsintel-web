@@ -1,107 +1,69 @@
-/* Design tokens from the FilingsIntel prototype. Color is semantic only:
-   up = purchases/increases, dn = sales/decreases, am = caution, acc = interactive. */
-:root,
-.app-look {
-  --font-ui: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+/* InsideLedger Design System tokens: the "Classical" look.
+   Marble (light) and Basalt (dark), Garamond display type, inscription
+   capitals for labels, square corners and rules instead of boxes.
+   Color is semantic only: up = purchases/increases, dn = sales/decreases,
+   am = caution, acc = interactive, orn = ornament (never meaning). */
+:root {
+  --font-display: "Cormorant Garamond", Garamond, "Times New Roman", serif;
+  --font-insc: Cinzel, "Trajan Pro", "Times New Roman", serif;
+  --font-body: "Libre Caslon Text", Georgia, "Times New Roman", serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+  --font-ui: var(--font-body);
 
-  --bg: #f6f7f9;
-  --surf: #ffffff;
-  --elev: #eff1f5;
-  --surfT: rgba(246, 247, 249, 0.86);
-  --ink: #151820;
-  --ink2: rgba(21, 24, 32, 0.66);
-  --ink3: rgba(21, 24, 32, 0.56);
-  --line: rgba(21, 24, 32, 0.09);
-  --lineSoft: rgba(21, 24, 32, 0.045);
-  --acc: #4763cf;
-  --accSoft: rgba(71, 99, 207, 0.1);
-  --accInk: #3b51b5;
-  --up: #0e7e56;
-  --upBg: rgba(14, 150, 96, 0.1);
-  --dn: #c13939;
-  --dnBg: rgba(205, 60, 60, 0.09);
-  --am: #8a5d08;
-  --amBg: rgba(196, 140, 20, 0.13);
-  --shadow: 0 1px 2px rgba(21, 24, 32, 0.04);
-  --scrim: rgba(21, 24, 32, 0.4);
+  --bg: #f3f3ef;
+  --surf: #fbfbf8;
+  --elev: #e8e8e2;
+  --surfT: #f3f3ef;
+  --ink: #1b1f2a;
+  --ink2: #4a5062;
+  --ink3: #5c6170;
+  --line: #bdbdb3;
+  --lineSoft: #d8d8d0;
+  --ctl: #7c8090;
+  --acc: #23396b;
+  --accSoft: rgba(35, 57, 107, 0.08);
+  --accInk: #172755;
+  --onAcc: #ffffff;
+  --orn: #8a6a2e;
+  --ornInk: #6f5320;
+  --up: #0b6b49;
+  --upBg: rgba(11, 107, 73, 0.1);
+  --dn: #a82e2b;
+  --dnBg: rgba(168, 46, 43, 0.09);
+  --am: #7a5200;
+  --amBg: rgba(122, 82, 0, 0.11);
+  --shadow: none;
+  --scrim: rgba(27, 31, 42, 0.4);
 
-  --r-chip: 5px;
-  --r-ctl: 9px;
-  --r-card: 12px;
-  --r-modal: 16px;
+  --r-chip: 0;
+  --r-ctl: 2px;
+  --r-card: 0;
+  --r-modal: 0;
   --r-pill: 99px;
 }
 
-:root[data-theme="dark"],
-:root[data-theme="dark"] .app-look {
-  --bg: #0e1015;
-  --surf: #151821;
-  --elev: #1e222e;
-  --surfT: rgba(14, 16, 21, 0.84);
-  --ink: #edeff4;
-  --ink2: rgba(237, 239, 244, 0.66);
-  --ink3: rgba(237, 239, 244, 0.54);
-  --line: rgba(237, 239, 244, 0.09);
-  --lineSoft: rgba(237, 239, 244, 0.05);
-  --acc: #7b8cef;
-  --accSoft: rgba(123, 140, 239, 0.14);
-  --accInk: #98a6f6;
-  --up: #3dbe8b;
-  --upBg: rgba(61, 190, 139, 0.13);
-  --dn: #e5686d;
-  --dnBg: rgba(229, 104, 109, 0.12);
-  --am: #d9a83f;
-  --amBg: rgba(217, 168, 63, 0.14);
-  --shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+:root[data-theme="dark"] {
+  --bg: #14171f;
+  --surf: #1b2030;
+  --elev: #0e1016;
+  --surfT: #14171f;
+  --ink: #ecebe5;
+  --ink2: #b6b9c4;
+  --ink3: #9094a3;
+  --line: #3a4052;
+  --lineSoft: #2a3042;
+  --ctl: #7c8296;
+  --acc: #9fb3e8;
+  --accSoft: rgba(159, 179, 232, 0.14);
+  --accInk: #c2d0f2;
+  --onAcc: #0e1016;
+  --orn: #c9a864;
+  --ornInk: #d6b97a;
+  --up: #4cc38f;
+  --upBg: rgba(76, 195, 143, 0.13);
+  --dn: #f08a85;
+  --dnBg: rgba(240, 138, 133, 0.12);
+  --am: #e0b04f;
+  --amBg: rgba(224, 176, 79, 0.14);
   --scrim: rgba(0, 0, 0, 0.55);
-}
-
-/* "Classic" look for marketing and auth pages: serif headings, navy on white,
-   square corners and ruled tables. The app itself keeps the tokens above. */
-.mkt {
-  --font-serif: "Source Serif 4", Georgia, "Times New Roman", serif;
-  --bg: #ffffff;
-  --surf: #ffffff;
-  --elev: #f3f4f7;
-  --surfT: #ffffff;
-  --ink: #121c2e;
-  --ink2: rgba(18, 28, 46, 0.74);
-  --ink3: rgba(18, 28, 46, 0.62);
-  --line: rgba(18, 28, 46, 0.18);
-  --lineSoft: rgba(18, 28, 46, 0.09);
-  --acc: #1b3a6b;
-  --accSoft: rgba(27, 58, 107, 0.08);
-  --accInk: #112848;
-  --onAcc: #ffffff;
-  --up: #0b6b49;
-  --dn: #b3322f;
-  --am: #85590a;
-  --shadow: none;
-  --scrim: rgba(18, 28, 46, 0.4);
-  --r-card: 2px;
-  --r-ctl: 2px;
-}
-:root[data-theme="dark"] .mkt {
-  --bg: #0c121c;
-  --surf: #121a27;
-  --elev: #1a2434;
-  --surfT: #0c121c;
-  --ink: #e8ecf3;
-  --ink2: rgba(232, 236, 243, 0.74);
-  --ink3: rgba(232, 236, 243, 0.6);
-  --line: rgba(232, 236, 243, 0.2);
-  --lineSoft: rgba(232, 236, 243, 0.09);
-  --acc: #9db4e6;
-  --accSoft: rgba(157, 180, 230, 0.14);
-  --accInk: #bbcbef;
-  --onAcc: #0c121c;
-  --up: #3dbe8b;
-  --dn: #e5686d;
-  --am: #d9a83f;
-  --scrim: rgba(0, 0, 0, 0.55);
-}
-.app-look {
-  --r-card: 12px;
-  --r-ctl: 9px;
 }

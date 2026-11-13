@@ -4,7 +4,6 @@ import { Link, NavLink, Outlet, ScrollRestoration, useNavigate } from "react-rou
 import { api } from "@/api/client";
 import type { AlertEvent, Page } from "@/api/types";
 import { ExplainDrawer, Toast, UpgradeModal } from "@/components/Overlays";
-import { Logo } from "@/components/ui";
 import { usePortal } from "@/features/billing";
 import { useLogout, useMe, useSyncThemeFromAccount, useUpdatePreferences } from "@/features/session";
 import { resolveTheme, useTheme } from "@/features/theme";
@@ -129,9 +128,9 @@ export function AppLayout() {
       <a href="#main" className="sr-only">Skip to content</a>
       <header className="hdr">
         <div className="hdr-in">
-          <Link to={me ? "/dashboard" : "/"} className="brand">
-            <Logo />
-            <span className="hide-sm">FilingsIntel</span>
+          <Link to={me ? "/dashboard" : "/"} className="wordmark">
+            <span className="hide-sm">InsideLedger</span>
+            <span className="show-sm" aria-hidden="true">IL</span>
           </Link>
           <nav className="nav" aria-label="Primary">{links}</nav>
           <GlobalSearch />
@@ -166,7 +165,7 @@ export function AppLayout() {
             For informational purposes only. This platform aggregates, organizes, and analyzes publicly available regulatory filings. It does not provide investment advice, recommendations, or personalized financial guidance. Reported holdings may be delayed and may not reflect current positions.
           </div>
           <div className="row wrap" style={{ gap: 14 }}>
-            <span>FilingsIntel · {DISCLAIMER}</span>
+            <span>InsideLedger · {DISCLAIMER}</span>
             <Link to="/methodology">Methodology</Link>
             <Link to="/terms">Terms</Link>
             <Link to="/privacy">Privacy</Link>
@@ -187,60 +186,53 @@ export function MarketingLayout() {
   return (
     <div className="shell mkt">
       <a href="#main" className="sr-only">Skip to content</a>
-      <header className="mhead">
-        <div className="util">
-          <div className="mwrap util-in">
-            <span>Form 4 and 13F filings, organized as they are reported.</span>
-            <span className="hide-sm">Source: SEC EDGAR</span>
-          </div>
+      <header>
+        <div className="mwrap dateline">
+          <span><em>Form 4 and 13F filings,</em> set down as they are reported.</span>
+          <ThemeToggle />
         </div>
-        <div className="masthead">
-          <div className="mwrap mast-in">
-            <Link to="/" className="wordmark">FilingsIntel</Link>
-            <nav className="mast-nav" aria-label="Main">
-              <NavLink to="/" end className={nav}>Product</NavLink>
-              <NavLink to="/pricing" className={nav}>Pricing</NavLink>
-              <NavLink to="/methodology" className={nav}>Methodology</NavLink>
-            </nav>
-            <div className="mast-act">
-              <ThemeToggle />
-              {me ? (
-                <Link to="/dashboard" className="btn primary">Open dashboard</Link>
-              ) : (
-                <>
-                  <Link to="/login" className="navlink strong hide-sm">Sign in</Link>
-                  <Link to="/signup" className="btn primary">Get started</Link>
-                </>
-              )}
-            </div>
-          </div>
+        <div className="mwrap mast-title">
+          <Link to="/" className="wordmark">InsideLedger</Link>
         </div>
+        <div className="mast-rule" />
+        <nav className="mwrap mast-nav" aria-label="Main">
+          <NavLink to="/" end className={nav}>Product</NavLink>
+          <NavLink to="/pricing" className={nav}>Pricing</NavLink>
+          <NavLink to="/methodology" className={nav}>Methodology</NavLink>
+          <span className="navsep" aria-hidden="true" />
+          {me ? (
+            <Link to="/dashboard" className="btn primary">Open dashboard</Link>
+          ) : (
+            <>
+              <Link to="/login" className="navlink strong">Sign in</Link>
+              <Link to="/signup" className="btn primary">Get started</Link>
+            </>
+          )}
+        </nav>
       </header>
       <main style={{ flex: 1 }} id="main">
         <Outlet />
       </main>
       <footer className="mfoot">
-        <div className="mwrap" style={{ paddingBlock: "40px 28px" }}>
-          <div className="cols" style={{ gridTemplateColumns: "1.4fr 1fr 1fr", gap: 28 }}>
-            <div>
-              <div className="wordmark" style={{ fontSize: 20 }}>FilingsIntel</div>
-              <div className="muted" style={{ fontSize: 13, marginTop: 8, maxWidth: 260 }}>Insider and institutional filings, organized.</div>
-            </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <div className="serif" style={{ fontSize: 14, marginBottom: 2 }}>Product</div>
+        <div className="mwrap" style={{ paddingBlock: "48px 28px", textAlign: "center" }}>
+          <div className="wordmark" style={{ fontSize: 24 }}>InsideLedger</div>
+          <div className="muted" style={{ fontSize: 14, margin: "10px auto 26px", maxWidth: 320 }}>Insider and institutional filings, set down in plain order.</div>
+          <div className="orn" style={{ maxWidth: 320, margin: "0 auto 30px" }} aria-hidden="true" />
+          <div className="foot-cols">
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
+              <div className="disp" style={{ fontSize: 22, marginBottom: 2 }}>Product</div>
               <Link to="/dashboard" className="footlink">Dashboard</Link>
               <Link to="/pricing" className="footlink">Pricing</Link>
               <Link to="/methodology" className="footlink">Methodology</Link>
             </div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
-              <div className="serif" style={{ fontSize: 14, marginBottom: 2 }}>Legal</div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "center" }}>
+              <div className="disp" style={{ fontSize: 22, marginBottom: 2 }}>Legal</div>
               <Link to="/terms" className="footlink">Terms of Service</Link>
               <Link to="/privacy" className="footlink">Privacy Policy</Link>
             </div>
           </div>
-          <div className="row wrap faint" style={{ justifyContent: "space-between", marginTop: 36, paddingTop: 18, borderTop: "1px solid var(--line)", fontSize: 12 }}>
-            <span>{DISCLAIMER}</span>
-            <span>© 2026 FilingsIntel</span>
+          <div className="faint" style={{ marginTop: 36, paddingTop: 18, borderTop: "1px solid var(--line)", fontSize: 13 }}>
+            {DISCLAIMER} © 2026 InsideLedger
           </div>
         </div>
       </footer>
@@ -252,14 +244,9 @@ export function MarketingLayout() {
 export function AuthLayout() {
   return (
     <div className="auth mkt">
-      <div className="hdr-in" style={{ width: "100%", maxWidth: 1200 }}>
-        <Link to="/" className="brand">
-          <Logo />
-          FilingsIntel
-        </Link>
-        <span style={{ marginLeft: "auto" }}>
-          <ThemeToggle />
-        </span>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "20px 28px" }}>
+        <Link to="/" className="wordmark" style={{ fontSize: 22 }}>InsideLedger</Link>
+        <ThemeToggle />
       </div>
       <div className="auth-body">
         <Outlet />

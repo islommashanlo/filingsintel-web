@@ -2,18 +2,6 @@ import { useEffect, useRef, type ReactNode } from "react";
 import { ApiError, errorMessage } from "@/api/client";
 import { dataAge, dateTimeET, money, moneyFull } from "@/lib/format";
 
-export function Logo() {
-  return (
-    <span className="brand-mark" aria-hidden="true">
-      <span>
-        <i style={{ height: 5, opacity: 0.65 }} />
-        <i style={{ height: 10 }} />
-        <i style={{ height: 7, opacity: 0.85 }} />
-      </span>
-    </span>
-  );
-}
-
 export function Avatar({ text, size = 38, round }: { text: string; size?: number; round?: boolean }) {
   return (
     <span className={`avatar ${round ? "round" : ""}`} aria-hidden="true" style={{ width: size, height: size, fontSize: size >= 48 ? 15 : size >= 34 ? 10 : 9, borderRadius: round ? undefined : Math.round(size / 4.2) }}>
