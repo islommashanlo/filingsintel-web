@@ -162,7 +162,7 @@ function Billing() {
       </Section>
       {!isPro && (
         <section className="card card-pad" style={{ borderColor: "var(--acc)" }}>
-          <div className="row" style={{ gap: 8 }}><span style={{ fontWeight: 700 }}>FilingsIntel Pro</span><Pro /></div>
+          <div className="row" style={{ gap: 8 }}><span style={{ fontWeight: 700 }}>InsideLedger Pro</span><Pro /></div>
           <div className="price" style={{ fontSize: 28, margin: "6px 0" }}>$19.99<span className="faint" style={{ fontSize: 12, fontWeight: 500 }}>/month</span></div>
           <div className="cols" style={{ gridTemplateColumns: "1fr 1fr", gap: "0 16px", marginBottom: 12 }}>
             {PRO_FEATURES.map((f) => <div className="feat" key={f}>{f}</div>)}

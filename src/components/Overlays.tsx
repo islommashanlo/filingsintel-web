@@ -27,7 +27,7 @@ export function UpgradeModal() {
   const navigate = useNavigate();
   const checkout = useCheckout();
   if (!upgrade) return null;
-  const title = (upgrade.feature && FEATURE_TITLE[upgrade.feature]) || "Upgrade to FilingsIntel Pro";
+  const title = (upgrade.feature && FEATURE_TITLE[upgrade.feature]) || "Upgrade to InsideLedger Pro";
   const go = () => {
     if (!me) {
       close();
